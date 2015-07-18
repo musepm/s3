@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+
+<noscript><meta http-equiv="refresh" content="0; URL=/?nojsmode=1" /></noscript>
+<script type="text/javascript">
+window.load_start_ms = new Date().getTime();
+window.load_log = [];
+window.logLoad = function(k) {
+	var ms = new Date().getTime();
+	window.load_log.push({
+		k: k,
+		t: (ms-window.load_start_ms)/1000
+	})
+}
+if(self!==top)window.document.write("\u003Cstyle>body * {display:none !important;}\u003C\/style>\u003Ca href=\"#\" onclick="+
+"\"top.location.href=window.location.href\" style=\"display:block !important;padding:10px\">Go to Slack.com\u003C\/a>");
+</script>
+
+
+<script type="text/javascript">
+window.callSlackAPIUnauthed = function(method, args, callback) {
+	var url = '/api/'+method+'?t='+new Date().getTime();
+	var req = new XMLHttpRequest();
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4) {
+			req.onreadystatechange = null;
+			var obj;
+			
+			if (req.status == 200) {
+				if (req.responseText.indexOf('{') == 0) {
+					try {
+						eval('obj = '+req.responseText);
+					} catch (err) {
+						console.warn('unable to do anything with api rsp');
+					}
+				}
+			}
+			
+			obj = obj || {
+				ok: false	
+			}
+			
+			callback(obj.ok, obj, args);
+		}
+	}
+	
+	req.open('POST', url, 1);
+	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	var args2 = [];
+	for (i in args) {
+		args2[args2.length] = encodeURIComponent(i)+'='+encodeURIComponent(args[i]);
+	}
+
+	req.send(args2.join('&'));
+}
+</script>
+
+				
+				
+		
+		<title>Slack: Be less busy</title>
+		<meta charset="utf-8">
+		<meta name="description" content="Slack brings all your communication together in one place. It’s real-time messaging, archiving and search for modern teams.">
+		<meta name="author" content="Slack">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<meta property="og:type" 		content="website"/>
+<meta property="og:site_name" 	content="Slack"/>
+<meta property="og:image" 		content="https://slack.com/img/slack_hash_128.v1427121438.png"/>
+<meta property="og:title" 		content="Slack: Be less busy"/>
+<meta property="og:description" content="Slack brings all your communication together in one place. It’s real-time messaging, archiving and search for modern teams."/>
+
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@slackhq">
+		<meta name="twitter:title" content="Slack: Be less busy">
+		<meta name="twitter:description" content="Slack brings all your communication together in one place. It’s real-time messaging, archiving and search for modern teams.">
+		<meta name="twitter:image" content="https://slack.global.ssl.fastly.net/a0b9/img/twitter-card.png"/>
+		<meta property="twitter:account_id" content="4503599627829849" />
+
+		
+<link id="favicon" rel="shortcut icon" href="https://slack.global.ssl.fastly.net/272a/img/icons/favicon-32.png" sizes="16x16 32x32 48x48" type="image/png" />
+
+<link rel="icon" href="https://slack.global.ssl.fastly.net/ba3c/img/icons/app-256.png" sizes="256x256" type="image/png" />
+
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-152.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-72.png" />
+<link rel="apple-touch-icon-precomposed" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-57.png" />
+
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="https://slack.global.ssl.fastly.net/272a/img/icons/app-144.png" />		
+		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+
+												<!-- output_css "regular" -->
+		<link href="https://slack.global.ssl.fastly.net/3a12/style/rollup-homepage.css" rel="stylesheet" type="text/css">
+
+		
+		<script type="text/javascript">
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-106458-18', 'slack.com');
+	ga('send', 'pageview');
+
+	(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-KH2LPK');
+
+	(function(e,c,b,f,d,g,a){e.SlackBeaconObject=d;
+	e[d]=e[d]||function(){(e[d].q=e[d].q||[]).push([1*new Date(),arguments])};
+	e[d].l=1*new Date();g=c.createElement(b);a=c.getElementsByTagName(b)[0];
+	g.async=1;g.src=f;a.parentNode.insertBefore(g,a)
+	})(window,document,"script","https://slack.global.ssl.fastly.net/dcf8/js/libs/beacon.js","sb");
+	sb('set', 'token', '3307f436963e02d4f9eb85ce5159744c');
+	sb('track', 'pageview');
+
+	function track(a){ga('send','event','web',a);sb('track',a);}
+
+
+	
+	(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+	for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+	
+	mixpanel.init("12d52d8633a5b432975592d13ebd3f34");
+
+	function mixpanel_track(event_name){if(window.mixpanel&&event_name)mixpanel.track(event_name);}
+
+</script>		
+	</head>
+
+	<body id="landing">
+		
+		<div class="section video splash">
+
+			<div class="container">
+
+				<div class="header">
+
+					<div id="logo"></div>		
+					
+											<p id="signin">
+							<span class="hide_on_mobile">Have an account?<br /></span>
+							<a href="/signin" id="signin_link">Sign in</a>
+						</p>
+					
+				</div>
+		
+									<h1>“So yeah, we tried Slack ...”</h1>
+					<p class="video_tagline hide_on_mobile">The Sandwich Video team tried Slack. Turns out it really <em style="margin-right: 0.15rem;">did</em> change the way they communicate.</p>
+								<p class="video_tagline show_on_mobile">A love letter from Sandwich Video:</p>
+
+									<img id="video_thumb" src="https://slack.global.ssl.fastly.net/7ed3/img/landing_video_thumb_@2x.png" srcset="https://slack.global.ssl.fastly.net/7ed3/img/landing_video_thumb.png 1x, https://slack.global.ssl.fastly.net/7ed3/img/landing_video_thumb_@2x.png 2x" />
+				
+				
+			</div>
+							<div id="video_form">
+					<p>Slack is a platform for team communication: everything in one place, instantly searchable, available wherever you go.</p>
+					<input id="form_overlay_btn" class="show_on_mobile" type="submit" value="Sign up for Free" />
+					<div id="form_overlay" class="show_on_mobile hidden">
+						<div id="logo"></div>
+						<a id="form_overlay_cancel">Cancel</a>
+						<div class="landing form section"><a name="signup"></a>
+
+	<p class="show_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+
+	<form action="/go/launch#signup" method="post" novalidate class="signup_form">
+		<input type="hidden" name="ref" value="" />
+		<input type="hidden" name="crumb" value="s-1433745627-06923f9638-☃" />
+
+						
+		<input type="hidden" name="done1" value="1" />
+
+		<input id="email" type="email" name="email" placeholder="Email Address" aria-label="Email Address" value="" />
+		<input id="company" type="text" name="company" placeholder="Company Name" aria-label="Company Name" value="" />
+
+		<input type="submit" value="Sign up for Free" />
+
+	</form>
+	
+	<p class="hide_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+</div>						<p class="subdued">After you sign up, we'll send you an e-mail with a link to create your team.</p>
+					</div>
+					<div class="hide_on_mobile">
+						<div class="landing form section"><a name="signup"></a>
+
+	<p class="show_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+
+	<form action="/go/launch#signup" method="post" novalidate class="signup_form">
+		<input type="hidden" name="ref" value="" />
+		<input type="hidden" name="crumb" value="s-1433745627-06923f9638-☃" />
+
+						
+		<input type="hidden" name="done1" value="1" />
+
+		<input id="email" type="email" name="email" placeholder="Email Address" aria-label="Email Address" value="" />
+		<input id="company" type="text" name="company" placeholder="Company Name" aria-label="Company Name" value="" />
+
+		<input type="submit" value="Sign up for Free" />
+
+	</form>
+	
+	<p class="hide_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+</div>					</div>				
+				</div>
+					</div>
+		
+		<a href="/is" id="tour_link">
+			<div class="section full colored align_center double-patterned">
+				<div class="container">
+					<p class="no_bottom_margin">Learn what Slack can do for you</p>
+					<h1>Take the Tour <i class="ts_icon ts_icon_arrow_circle_o_right float_right"></i></h1>
+					<p>Screenshots, feature descriptions, and more</p>
+				</div>
+			</div>
+		</a>
+
+		<div class="section full align_center" id="team-communication-leader">
+			<div class="container">
+				<h2 id="imagine_text" class="kelly_green">Imagine all your team communication in one place, instantly searchable, available wherever you go. That's Slack.</h2>
+				<hr id="trusted_hr" class="subheading_divider text gradient" data-mobile-text="TRUSTED BY" aria-label="These companies are changing the world. And, along with hundreds of others, they use Slack."/>
+				<img class="responsive_image logos" src="img/landing/home_logos.png" srcset="img/landing/home_logos.png 1x, img/landing/home_logos_2x.png 2x" alt="Companies using Slack include Adobe, AirBnB, BuzzFeed, ebay, Expedia, PayPal, Intuit, NBC Universal, Nordstrom, HBO, Salesforce.com, The Wall Street Journal, The New York Times, and Dow Jones" />
+			</div>
+		</div>
+		
+		<div class="section full" id="love">
+			<div class="container align_center">
+				<h3 class="bottom_margin" style="width: 75%;">“I am basically in love with Slack. It took us less than 24 hours to get everyone on board (as you know, people are resistant to change), and it is amazing.”</h3>
+				<p><strong>Tony Conrad</strong>, Founder, <a href="https://about.me/" class="bold">About.me</a></p>
+			
+				<h3 id="love_link"><a href="https://twitter.com/SlackLoveTweets">See what else <u>people are saying</u> about Slack</a></h3>
+			</div>
+		</div>
+	
+		<a href="/integrations" id="integrations_link">
+			<div class="section full colored align_center double-patterned">
+				<div class="container">
+					<p class="no_bottom_margin">Slack works with the services that your team already uses</p>
+					<h2 class="top_margin bottom_margin">See our full list of integrations <i class="ts_icon ts_icon_arrow_right"></i></h2>
+				</div>
+			</div>
+		</a>
+
+		<div class="section footer">
+	
+			<div class="container">
+
+				<div class="footer_logo_wrapper">
+					<div id="footer_logo"></div>
+				</div>
+		
+				<h2 class="align_center">We’re on a mission to make your working life simpler, more pleasant and more productive.</h2>
+		
+				<div class="landing form section"><a name="signup"></a>
+
+	<p class="show_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+
+	<form action="/go/launch#signup" method="post" novalidate class="signup_form">
+		<input type="hidden" name="ref" value="" />
+		<input type="hidden" name="crumb" value="s-1433745627-06923f9638-☃" />
+
+						
+		<input type="hidden" name="done1" value="1" />
+
+		<input id="email" type="email" name="email" placeholder="Email Address" aria-label="Email Address" value="" />
+		<input id="company" type="text" name="company" placeholder="Company Name" aria-label="Company Name" value="" />
+
+		<input type="submit" value="Sign up for Free" />
+
+	</form>
+	
+	<p class="hide_on_mobile">		
+					Slack is free to use for as long as you want and with an unlimited number of people.
+				
+	</p>
+
+</div>
+				<p class="footer_links align_center">
+					Made by Slack Technologies, Inc. in San Francisco &nbsp; •					<a href="https://slack.com/jobs" class="hiring_link">We’re hiring!</a> • 
+					<a href="http://slackatwork.com" target="_blank">Slack at Work</a><br />
+					<a href="https://api.slack.com/">API</a> •
+					<a href="http://status.slack.com">Status</a> •
+					<a href="/pricing">Pricing</a> •
+					<a href="/brand-guidelines">Brand Guidelines</a> •
+					<a href="/integrations">Integrations</a><br />
+					<a href="http://slackhq.com/">Our Blog</a> •
+					<a href="/varietypack">Podcast</a> •
+					<a href="/terms-of-service">Terms of Service</a> •
+					<a href="/privacy-policy">Privacy Policy</a> •
+					<a href="/policies">Policies</a>
+					<br />
+					Twitter:<a href="http://twitter.com/slackhq">@slackhq</a> •
+					<a href="/help/contact">Contact Us</a> •
+					&nbsp;&nbsp;Press inquiries:<a href="mailto:pr@slack.com">pr@slack.com</a>
+			
+				</p>
+
+			</div>
+	
+		</div>
+
+						<!-- output_js "core" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/39bd/js/rollup-homepage.js" crossorigin="anonymous"></script>
+
+					<script src="https://www.youtube.com/iframe_api"></script>
+			<div id="video_overlay">
+				<div class="video_container">
+											<button type="button" id="video_close_btn" class="close ts_icon ts_icon_times_circle ts_icon_inherit"></button>
+															<iframe id="video_embed" class="youtube-player" type="text/html" width="1000" height="563" src="https://www.youtube.com/embed/B6zVzWU95Sw?rel=0&hd=1&vq=hd720&enablejsapi=1&origin=https://slack.com" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		
+				
+					<script>		
+				
+				
+				$('#form_overlay_btn').on('click', function() {
+					$('#form_overlay').removeClass('hidden');
+				});
+				$('#form_overlay_cancel').on('click', function() {
+					$('#form_overlay').addClass('hidden')
+				});
+				
+				// functions are attached to window because they must be global in scope
+				var player;
+
+				window.onYouTubeIframeAPIReady = function() {
+					player = new YT.Player('video_embed', {
+				    	events: {
+				      		'onReady': window.onPlayerReady,
+				      		'onStateChange': window.onPlayerStateChange
+				    	}
+				  	});
+
+				}
+
+				window.onPlayerReady = function(event) {}
+				window.onPlayerStateChange = function(event) {
+					// close video when it finishes	and reset to beginning
+					if (event.data == 0) {
+						closeVideo();
+						setTimeout(function() {
+							if (typeof(player.seekTo) != "undefined") {
+								player.seekTo(0);
+								player.stopVideo(); // stop it from autoplaying again
+							}
+						}, 0);									
+					}
+				}
+
+				// set up lightbox
+				openVideo = function() {
+
+					// center video
+					var window_height = window.innerHeight ? window.innerHeight : $(window).height(); //account for mobile safari window height bug: http://bugs.jquery.com/ticket/6724
+					var video_height = $('#video_embed').outerHeight();
+
+					var position = ((window_height - video_height) / 2);								
+					if (position < 0) position = 0;
+
+					$('#video_overlay').addClass('active').css('padding-top', position);
+
+					// prevent scrolling
+					$('body').css('overflow', 'hidden');
+					
+					// ESC to dismiss
+					$(window.document).bind('keydown.esc', function(e) {
+						console.log('keydown');
+						if (e.which == 27) {
+							console.log('ESC');
+							closeVideo();
+						}
+					});
+
+					if (navigator.userAgent.match(/(iPad)/)) {
+						// reload video on iPad
+						document.getElementById('video_embed').src = document.getElementById('video_embed').src;
+					} else {
+						if (typeof(player.playVideo) != "undefined") {
+							player.playVideo();	
+						}									
+					}
+				
+				}
+
+				closeVideo = function() {
+
+					if (typeof(player.stopVideo) != "undefined") {
+						player.stopVideo();
+					}
+
+					$('#video_overlay').removeClass('active').css('padding-top', '');
+					$('body').css('overflow', 'auto');
+
+					$(window.document).unbind('keydown.esc');
+
+				}
+
+				$('#video_thumb').on('click', openVideo);
+				$('#video_overlay').on('click', function(e) {
+					if (e.target && e.target.id && e.target.id == "video_overlay") {
+						closeVideo();	
+					}								
+				});
+				$('#video_close_btn').on('click', closeVideo);
+
+				
+			</script>
+		
+
+		<script type="text/javascript">if (window.mixpanel) { 		
+		mixpanel.track_forms('.signup_form', 'signup', function(form) {
+			var $form = $(form);
+			return {
+				incl_company: !!($form.find('[name=company]').val().length),
+				form_on_page: 'home'
+			}
+		});
+		
+		 }</script>
+								
+<!-- slack-www270 / 2015-06-07 23:40:27 / v6014b8d816bb4d4203b512a67e41b09c542f2453 -->				
+				<!-- slack-www270 / 2015-06-07 23:40:27 / v6014b8d816bb4d4203b512a67e41b09c542f2453 -->
+
+	</body>
+		
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "musepm-s3",
+  "version": "1.0.0",
+  "description": "S3 for musepm.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musepm/s3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/musepm/s3/issues"
+  },
+  "homepage": "https://github.com/musepm/s3#readme",
+  "dependencies": {
+    "babel": "^5.5.8",
+    "babel-runtime": "^5.5.8",
+    "musepm-credentials": "^1.1.0",
+    "musepm-monitor": "^1.2.0"
+  }
+}
