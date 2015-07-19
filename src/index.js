@@ -1,24 +1,28 @@
-var SlackClient = require('slack-client'),
-    credentials = require('musepm-credentials'),
-    Channel = require('slack-client/src/channel');
-
+var credentials = require('musepm-credentials'),
+    AWS = require('aws-sdk');
+var l = console.log;
 module.exports = {
   async signon(cfg) {
     try {
+l(1)
+      AWS.config.region = cfg.region;
       var main = await credentials.getAll('main');
-      var creds = await credentials.getAll('slack');
-      var monitor = require('musepm-monitor')(main.accountid, cfg);
-      var cls = Channel.prototype; 
-      cls.send = monitor.logCalls('slack','send', cls.send);
-      var slack = new SlackClient(creds[cfg], true, true);
+l(2)
+      var creds = await credentials.getAll('aws');
+      AWS.config.accessKeyId = creds.id;
+      AWS.config.secretAccessKey = creds.secret;
+l(4)
+      var monitor = require('musepm-monitor')(main.accountid, cfg.appid);
+      var cls = AWS.S3.prototype;
+      cls.createBucket = monitor.logCalls('s3','createBucket', cls.createBucket);
+      cls.upload = monitor.logCalls('s3', 'upload', cls.upload);
+l(5)
+
+      var bucket = new AWS.S3({params: { Bucket: cfg.bucket}});
     } catch (e) {
       console.error(e);
     }
-    slack.on('error', function(e) {
-     console.log(e);
-    });
-    slack.login();
-    return slack;
+    return bucket;
   }
 }
 
