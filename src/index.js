@@ -17,12 +17,11 @@ l(4)
       cls.createBucket = monitor.logCalls('s3','createBucket', cls.createBucket);
       cls.upload = monitor.logCalls('s3', 'upload', cls.upload);
 l(5)
-
-      var bucket = new AWS.S3({params: { Bucket: cfg.bucket}});
+      var s3 = new AWS.S3();
     } catch (e) {
       console.error(e);
     }
-    return bucket;
+    return s3;
   }
 }
 
