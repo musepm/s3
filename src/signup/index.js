@@ -1,0 +1,35 @@
+require('shelljs/global');
+
+let prompt = require('prompt'),
+    pr = require('es6-promisify'),
+    promptGet = pr(prompt.get),
+    credentials = require('musepm-credentials');
+
+async function go() {
+
+  var email = '';
+
+  prompt.message = '>'.green;
+  prompt.start();
+ 
+  let su = `
+
+---------------------------------------------------------------
+
+Enter ypur app/acctid and AWS access id/secret credentials below.
+
+`
+  console.log(su);
+
+  prompts.push('accountid', 'appid', 'id', 'secret');
+  let info = await promptGet(prompts);
+  credentials.newCredentials(slack);
+}
+
+try {
+  go().then(r => {
+    console.log('Done');
+  });
+} catch(e) {
+  console.error(e);
+}
