@@ -21,7 +21,9 @@
     "aws-sdk": "^2.1.39",
     "babel": "^5.5.8",
     "babel-runtime": "^5.5.8",
+    "es6-promisify": "^2.0.0",
     "musepm-credentials": "^1.1.0",
-    "musepm-monitor": "^1.2.0"
+    "musepm-monitor": "^1.2.0",
+    "prompt": "^0.2.14"
   }
 }
