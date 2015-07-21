@@ -16,7 +16,7 @@ Enter your app/acctid and AWS access id/secret credentials below.
 
 `
   console.log(su);
-
+  let prompts = [];
   prompts.push('accountid', 'appid', 'id', 'secret');
   let info = await promptGet(prompts);
   let main = { accountid: info.accountid, 
