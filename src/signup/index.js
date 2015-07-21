@@ -1,13 +1,9 @@
-require('shelljs/global');
-
 let prompt = require('prompt'),
     pr = require('es6-promisify'),
     promptGet = pr(prompt.get),
     credentials = require('musepm-credentials');
 
 async function go() {
-
-  var email = '';
 
   prompt.message = '>'.green;
   prompt.start();
