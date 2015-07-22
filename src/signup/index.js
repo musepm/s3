@@ -20,10 +20,10 @@ Enter your app/acctid and AWS access id/secret credentials below.
   prompts.push('accountid', 'appid', 'id', 'secret');
   try {
     let info = await promptGet(prompts);
-    let main = { accountid: info.accountid, 
-                 appid: info.appid };
+    let main = {main:{ accountid: info.accountid, 
+                 appid: info.appid }};
     await credentials.newCredentials(main);
-    let aws = { id: info.id, secret: info.secret };
+    let aws = {aws:{ id: info.id, secret: info.secret }};
     await credentials.newCredentials(aws);  
   } catch (e) {
     console.error(e);
