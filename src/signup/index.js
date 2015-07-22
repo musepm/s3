@@ -18,12 +18,16 @@ Enter your app/acctid and AWS access id/secret credentials below.
   console.log(su);
   let prompts = [];
   prompts.push('accountid', 'appid', 'id', 'secret');
-  let info = await promptGet(prompts);
-  let main = { accountid: info.accountid, 
-               appid: info.appid };
-  credentials.newCredentials(main);
-  let aws = { id: info.id, secret: info.secret };
-  credentials.newCredentials(aws);  
+  try {
+    let info = await promptGet(prompts);
+    let main = { accountid: info.accountid, 
+                 appid: info.appid };
+    await credentials.newCredentials(main);
+    let aws = { id: info.id, secret: info.secret };
+    await credentials.newCredentials(aws);  
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 try {
